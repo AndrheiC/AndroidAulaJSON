@@ -1,8 +1,11 @@
 package br.com.opet.tds.androidaulajson;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Carro {
+    @SerializedName("id")
     private long ID;
     private String marca;
     private String modelo;
@@ -79,13 +82,13 @@ public class Carro {
         opc = opc.trim();
         opc += "]";
 
-        return "Carro{" +
+        return "Carro{\n" +
                 "ID=" + ID +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", fabricacao=" + fabricacao +
-                ", automatico=" + automatico +
-                ", opcionais=" + opc +
-                '}';
+                ",\nmarca='" + marca + '\'' +
+                ",\nmodelo='" + modelo + '\'' +
+                ",\nfabricacao=" + fabricacao +
+                ",\nautomatico=" + automatico +
+                ",\nopcionais=" + opc +
+                "\n}";
     }
 }

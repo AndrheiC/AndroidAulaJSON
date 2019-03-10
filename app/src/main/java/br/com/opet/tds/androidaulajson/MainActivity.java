@@ -11,6 +11,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +34,31 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         textJSON.setText(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        textJSON.setText("Falha ao obter JSON");
+                    }
+                });
+
+        queue.add(stringRequest);
+    }
+
+    public void downloadGSON(View view) {
+        GsonBuilder builder = new GsonBuilder();
+        final Gson gson = builder.create();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://my-json-server.typicode.com/devdcardoso/JSONCarrosApp/carro";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Carro carro = gson.fromJson(response,Carro.class);
+                        textJSON.setText(carro.toString());
                     }
                 },
                 new Response.ErrorListener() {

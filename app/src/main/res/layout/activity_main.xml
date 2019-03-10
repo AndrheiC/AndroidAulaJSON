@@ -13,8 +13,13 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
     <Button
-        android:text="Baixar"
+        android:text="Baixar RAW"
         android:onClick="downloadJSON"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="Baixar Com GJON"
+        android:onClick="downloadGSON"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
